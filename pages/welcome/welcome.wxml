@@ -3,7 +3,7 @@
 <view class="container">
 <!--图片默认尺寸 width:300px height:225px-->
   <image 
-  class="user-avatar" src='/images/123.jpeg'></image>
+  class="user-avatar" src='/images/avatar/1.png'></image>
   <text class="user-name">Hello,七月</text>
   <view class="moto-container">
     <text class="moto">开启小程序之旅</text>
