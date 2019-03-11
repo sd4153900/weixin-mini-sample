@@ -1,5 +1,5 @@
 <view>
-  <swiper indicator-dots="true" autoplay="true" interval="2000">
+  <swiper indicator-dots="true" autoplay="true">
     <swiper-item>
       <image src="/images/123.jpeg"></image>
     </swiper-item>
