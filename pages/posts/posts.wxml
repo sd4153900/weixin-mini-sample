@@ -13,8 +13,8 @@
 
   <view class="post-containet">
     <view class="post-author-date">
-      <image class="post-author" src="/images/avatar/2.png"></image>
-      <text class="post-date">sep 18 2016</text>
+      <image class="post-author" src="{{img}}"></image>
+      <text class="post-date">{{date}}</text>
     </view>
     <text class="post-title">正是虾肥蟹壮时</text>
     <image class="post-image" src="/images/post/crab.png"></image>

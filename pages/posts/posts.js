@@ -5,14 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    // date : "Sep 18 2016"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var data1 = {
+      date : "Sep 18 2016",
+      img: "/images/avatar/2.png"
+    }
+    //绑定服务器获取的数据
+    this.setData(data1);
   },
 
   /**
