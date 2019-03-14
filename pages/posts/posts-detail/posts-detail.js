@@ -1,48 +1,24 @@
-// pages/posts/posts.js
-
-//只能用相对路径
-var postsData = require('../../data/posts-data.js')
+// pages/posts/posts-detail/posts-etail.js
+var postsData = require("../../../data/posts-data.js");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    // date : "Sep 18 2016"
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // var data1 = [{
-    //   date : "Sep 18 2016",
-    //   img: "/images/avatar/2.png",
-    //   message:{
-    //     title:"正是虾肥蟹壮时"
-    //   }
-    // },
-    // {
-    //   date: "Sep 18 2015",
-    //   img: "/images/avatar/3.png",
-    //   message: {
-    //     title: "正是虾肥蟹壮时1"
-    //   }
-    // }]
+    var postId = options.id;
+    var postData = postsData.postList[postId];
+    this.setData({postData});
+    // this.data.postData = postData;
+  },
 
-    
-    //绑定服务器获取的数据
-    this.setData({
-      postList:postsData.postList
-      });
-    // this.setData({data1});//ES6
-  },
-  onPostTap:function(event){
-    var postId = event.currentTarget.dataset.postId;
-    wx.navigateTo({
-      url: 'posts-detail/posts-detail?id=' + postId,
-    })
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
