@@ -1,4 +1,7 @@
 // pages/posts/posts.js
+
+//只能用相对路径
+var postsData = require('../../data/posts-data.js')
 Page({
 
   /**
@@ -12,25 +15,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var data1 = [{
-      date : "Sep 18 2016",
-      img: "/images/avatar/2.png",
-      message:{
-        title:"正是虾肥蟹壮时"
-      }
-    },
-    {
-      date: "Sep 18 2015",
-      img: "/images/avatar/3.png",
-      message: {
-        title: "正是虾肥蟹壮时1"
-      }
-    }]
+    // var data1 = [{
+    //   date : "Sep 18 2016",
+    //   img: "/images/avatar/2.png",
+    //   message:{
+    //     title:"正是虾肥蟹壮时"
+    //   }
+    // },
+    // {
+    //   date: "Sep 18 2015",
+    //   img: "/images/avatar/3.png",
+    //   message: {
+    //     title: "正是虾肥蟹壮时1"
+    //   }
+    // }]
 
     
     //绑定服务器获取的数据
-    // this.setData({containet:data1});
-    this.setData({data1});//ES6
+    this.setData({
+      postList:postsData.postList
+      });
+    // this.setData({data1});//ES6
   },
 
   /**
