@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isMusicPlay : false,
   },
 
   /**
@@ -95,8 +95,36 @@ Page({
           })
         }
       }
-    })
+    });
       // wx.removeStorageSync("key");
+  },
+  onMusicTap:function(event){
+    var music = this.data.postData.music; 
+    var isMusicPlay = this.data.isMusicPlay;
+    const BackgroundAudioManager = wx.getBackgroundAudioManager();
+    if (isMusicPlay){
+      this.setData({
+        isMusicPlay: false,
+      });
+      BackgroundAudioManager.pause();
+    }else{
+      this.setData({
+        isMusicPlay: true,
+      });
+      BackgroundAudioManager.title = music.title;
+      BackgroundAudioManager.coverImgUrl = music.coverImg;
+      BackgroundAudioManager.src = music.url;
+    }
+    
+   
+    
+    // BackgroundAudioManager.play();
+    // wx.playBackgroundAudio({
+    //   dataUrl: 'http://music.163.com/song/media/outer/url?id=142604.mp3',
+    //   title:'夜夜夜夜-齐秦',
+    //   coverImgUrl:'http://y.gtimg.cn/music/photo_new/T002R150x150M000001TEc6V0kjpVC.jpg?max_age=2592000',
+
+    // })
   },
 
   /**
