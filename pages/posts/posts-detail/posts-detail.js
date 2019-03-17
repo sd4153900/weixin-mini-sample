@@ -45,9 +45,11 @@ Page({
 
     if (postsCollected) {
       var postCollectde = postsCollected[postId];
-      this.setData({
-        collected: postCollectde
-      });
+      if (postCollectde){
+        this.setData({
+          collected: postCollectde
+        });
+      }
     } else {
       postsCollected = {};
       postsCollected[postId] = false;
