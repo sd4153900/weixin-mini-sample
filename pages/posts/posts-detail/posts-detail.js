@@ -1,5 +1,6 @@
 // pages/posts/posts-detail/posts-etail.js
 var postsData = require("../../../data/posts-data.js");
+var app = getApp();
 Page({
 
   /**
@@ -13,10 +14,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     var postId = options.id;
     var postData = postsData.postList[postId];
     this.setData({postData});
     // this.data.postData = postData;//无效？
+
+    this.initStorage(postId);
+    
+    this.initMusicStatus(postId);
+      
+    this.listenMusicManager(postId);
+
 
     // //缓存 sync 同步
     // //缓存上限10MB
@@ -28,22 +37,53 @@ Page({
     // wx.getStorageSync("key");
     // //清空缓存
     // wx.clearStorageSync()；
+  },
 
+  //初始化缓存数据
+  initStorage: function (postId){
     var postsCollected = wx.getStorageSync("posts_coolected");
-    if (postsCollected){
-      var postCollectde = postsCollected[postId];
-      // if(){
 
-      // }
+    if (postsCollected) {
+      var postCollectde = postsCollected[postId];
       this.setData({
         collected: postCollectde
       });
-    }else{
+    } else {
       postsCollected = {};
       postsCollected[postId] = false;
       wx.setStorageSync("posts_coolected", postsCollected);
     }
-   
+  },
+  //初始化音乐播放状态
+  initMusicStatus: function (postId){
+    var globalData = app.globalData;
+
+    if (globalData.g_isPlayingMusic && globalData.g_currentMusicPostId === postId) {
+      this.setData({
+        isMusicPlay: true,
+      });
+    }
+  },
+  //监听音乐播放事件
+  listenMusicManager: function (postId){
+    var globalData = app.globalData;
+    var that = this;
+    const BackgroundAudioManager = wx.getBackgroundAudioManager();
+
+    BackgroundAudioManager.onPlay(function () {
+      that.setData({
+        isMusicPlay: true,
+      });
+      globalData.g_isPlayingMusic = true;
+      globalData.g_currentMusicPostId = postId;
+    });
+
+    BackgroundAudioManager.onPause(function () {
+      that.setData({
+        isMusicPlay: false,
+      });
+      globalData.g_isPlayingMusic = false;
+    });
   },
   //收藏功能
   onCollectionTap:function(event){
@@ -65,7 +105,7 @@ Page({
       duration : 1000,
     })
   },
-
+  //分享功能（假的）
   onShareTap:function(event){
     var itemList = [
       "分享给微信好友",
@@ -98,6 +138,7 @@ Page({
     });
       // wx.removeStorageSync("key");
   },
+  //音乐播放功能
   onMusicTap:function(event){
     var music = this.data.postData.music; 
     var isMusicPlay = this.data.isMusicPlay;
