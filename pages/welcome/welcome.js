@@ -6,7 +6,11 @@ Page({
     //   url: '/pages/posts/posts',
     // })
     //重定向 执行onUnload
-    wx.redirectTo({
+    // wx.redirectTo({
+    //   url: '/pages/posts/posts',
+    // })
+    //使用tabBar 页面跳转用
+    wx.switchTab({
       url: '/pages/posts/posts',
     })
   },
