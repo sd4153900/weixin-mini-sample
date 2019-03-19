@@ -32,13 +32,32 @@ Page({
 
     
     //绑定服务器获取的数据
-    this.setData({
-      postList:postsData.postList
-      });
+    var postList = postsData.postList;
+    this.setData({postList});
+
+      var swiperList = [];
+      for(var i = 0;i < postList.length; i++){
+        var postItem = postList[i];
+        swiperList[i] = {
+          postId : i,
+          imgSrc: postItem.imgSrc,
+        };
+          if(i == 2){
+            break;
+          }
+      }
+      this.setData({swiperList});
     // this.setData({data1});//ES6
   },
   onPostTap:function(event){
     var postId = event.currentTarget.dataset.postId;
+    wx.navigateTo({
+      url: 'posts-detail/posts-detail?id=' + postId,
+    })
+  },
+  onSwiperTap: function (event){
+    //target 当前点击组件 currentTarget 事件捕获组件
+    var postId = event.target.dataset.postId;
     wx.navigateTo({
       url: 'posts-detail/posts-detail?id=' + postId,
     })

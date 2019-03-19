@@ -1,15 +1,18 @@
 <import src="posts-item/posts-item-template.wxml" />
 <view>
-  <swiper indicator-dots="{{true}}" autoplay="{{true}}">
+  <swiper catchtap="onSwiperTap" indicator-dots="{{true}}" autoplay="{{true}}">
+  <block wx:for="{{swiperList}}">
     <swiper-item>
-      <image src="/images/wx.png"></image>
+      <image src="{{item.imgSrc}}" data-post-id="{{item.postId}}"></image>
     </swiper-item>
-    <swiper-item>
+  </block>
+    
+    <!-- <swiper-item>
       <image src="/images/iqiyi.png"></image>
     </swiper-item>
     <swiper-item>
       <image src="/images/vr.png"></image>
-    </swiper-item>
+    </swiper-item> -->
   </swiper>
   <!-- wx:if 判断 -->
   <!-- wx:for 循环 xw:for-item 子元素值，默认为item xw:index 序号，默认index -->
