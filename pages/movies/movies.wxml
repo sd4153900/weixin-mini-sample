@@ -2,8 +2,7 @@
 <import src="movie-list/movie-list-template.wxml" />
 
 <view>
-  <template is="movieListTemplate" />
-  <template is="movieListTemplate" />
-  <template is="movieListTemplate" />
+  <block wx:for="{{movieData}}">
+    <template is="movieListTemplate" data="{{...item}}" />
+  </block>
 </view>
-
